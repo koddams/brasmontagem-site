@@ -9,16 +9,13 @@ import { motion, AnimatePresence } from "framer-motion"
 export function NavHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Animations
   const menuVariants = {
     open: { 
-      opacity: 1,
-      y: 0,
+      x: 0,
       transition: { type: "spring", stiffness: 300, damping: 24 }
     },
     closed: { 
-      opacity: 0,
-      y: -20,
+      x: '100%',
       transition: { duration: 0.2 }
     }
   }
@@ -76,7 +73,6 @@ export function NavHeader() {
         <AnimatePresence>
           {isMenuOpen && (
             <>
-              {/* Overlay */}
               <motion.div
                 className="fixed inset-0 bg-black/50 md:hidden"
                 initial="closed"
@@ -86,14 +82,12 @@ export function NavHeader() {
                 onClick={() => setIsMenuOpen(false)}
               />
 
-              {/* Menu Content */}
               <motion.div
-                className="md:hidden absolute left-0 right-0 bg-white shadow-xl"
+                className="fixed top-0 right-0 h-full w-64 bg-white shadow-xl md:hidden"
                 initial="closed"
                 animate="open"
                 exit="closed"
                 variants={menuVariants}
-                id="mobile-menu"
               >
                 <div className="flex flex-col gap-2 p-4">
                   {['servicos', 'sobre', 'projetos', 'contato'].map((item) => (
