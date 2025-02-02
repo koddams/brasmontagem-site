@@ -1,31 +1,25 @@
-// Componente do botão flutuante do WhatsApp
-// Documentação Lucide Icons: https://lucide.dev/docs/lucide-react
+// components/whatsapp-button.tsx
 "use client"
 
-import { Phone } from "lucide-react"
+import { motion } from 'framer-motion'
 
 export function WhatsAppButton() {
-  // Função para abrir o WhatsApp
-  const handleClick = () => {
-    // Número do WhatsApp da empresa
-    const phoneNumber = "5511971898699"
-    const message = encodeURIComponent("Olá! Gostaria de mais informações sobre os serviços da Brasmontagem.")
-    // Abre o WhatsApp em nova aba
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank")
-  }
-
   return (
-    <button
-      onClick={handleClick}
-      className="fixed bottom-6 right-6 z-50 bg-secondary text-primary font-semibold p-4 rounded-full shadow-lg hover:bg-primary hover:text-white transition-colors duration-200 flex items-center justify-center group"
-      aria-label="Contato via WhatsApp"
+    <motion.div
+      className="fixed bottom-4 right-4 z-50"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 1 }}
     >
-      <Phone className="w-6 h-6" />
-      {/* Texto que aparece ao passar o mouse */}
-      <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-200 ease-in-out whitespace-nowrap">
-        Fale conosco
-      </span>
-    </button>
+      <a
+        href="https://wa.me/5511971898699" //Número principal da Nely
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center gap-2 hover:bg-green-600 transition-colors"
+      >
+        {/* Ícone do WhatsApp */}
+        <span className="hidden sm:inline">Enviar Mensagem</span>
+      </a>
+    </motion.div>
   )
 }
-
