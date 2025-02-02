@@ -1,4 +1,3 @@
-// components/project-carousel.tsx
 "use client"
 
 import { useState } from 'react'
@@ -38,6 +37,7 @@ export function ProjectCarousel() {
             alt={projects[currentIndex].title}
             fill
             className="object-cover"
+            priority
           />
           <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-4">
             <h3 className="text-xl font-bold text-white">
@@ -52,13 +52,39 @@ export function ProjectCarousel() {
         onClick={prevProject}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"
       >
-        {/* Ícone de seta esquerda */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-[#F2A71B]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
       </button>
       <button
         onClick={nextProject}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"
       >
-        {/* Ícone de seta direita */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-[#F2A71B]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
       </button>
     </div>
   )
