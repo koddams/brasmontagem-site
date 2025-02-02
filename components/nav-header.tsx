@@ -4,78 +4,114 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function NavHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  // Animations
+  const menuVariants = {
+    open: { 
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 }
+    },
+    closed: { 
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.2 }
+    }
+  }
+
+  const overlayVariants = {
+    open: { opacity: 1 },
+    closed: { opacity: 0 }
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-      <nav className="container mx-auto px-4 py-3">
+      <nav className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <Image src="/logo.png" alt="Brasmontagem Logo" width={200} height={60} className="h-12 w-auto" />
+          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <Image 
+              src="/logo.png" 
+              alt="Brasmontagem Logo" 
+              width={200} 
+              height={60} 
+              className="h-12 w-auto object-contain"
+              priority
+            />
           </Link>
 
-          <div className="hidden md:flex space-x-4">
-            <Link href="#servicos" className="text-blue-500 hover:text-blue-700 transition-colors">
-              Serviços
-            </Link>
-            <Link href="#sobre" className="text-blue-500 hover:text-blue-700 transition-colors">
-              Sobre
-            </Link>
-            <Link href="#projetos" className="text-blue-500 hover:text-blue-700 transition-colors">
-              Projetos
-            </Link>
-            <Link href="#contato" className="text-blue-500 hover:text-blue-700 transition-colors">
-              Contato
-            </Link>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-6">
+            {['servicos', 'sobre', 'projetos', 'contato'].map((item) => (
+              <Link
+                key={item}
+                href={`#${item}`}
+                className="text-blue-600 hover:text-blue-800 transition-colors duration-300 font-medium"
+              >
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+              </Link>
+            ))}
           </div>
 
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-blue-500"
+            className="md:hidden text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? (
+              <X size={24} className="stroke-current" />
+            ) : (
+              <Menu size={24} className="stroke-current" />
+            )}
           </button>
         </div>
 
-        {isMenuOpen && (
-          <div className="md:hidden pt-4 pb-3">
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="#servicos"
-                className="text-blue-500 hover:text-blue-700 transition-colors block py-2"
+        {/* Mobile Menu with Animations */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <>
+              {/* Overlay */}
+              <motion.div
+                className="fixed inset-0 bg-black/50 md:hidden"
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={overlayVariants}
                 onClick={() => setIsMenuOpen(false)}
+              />
+
+              {/* Menu Content */}
+              <motion.div
+                className="md:hidden absolute left-0 right-0 bg-white shadow-xl"
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={menuVariants}
+                id="mobile-menu"
               >
-                Serviços
-              </Link>
-              <Link
-                href="#sobre"
-                className="text-blue-500 hover:text-blue-700 transition-colors block py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sobre
-              </Link>
-              <Link
-                href="#projetos"
-                className="text-blue-500 hover:text-blue-700 transition-colors block py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Projetos
-              </Link>
-              <Link
-                href="#contato"
-                className="text-blue-500 hover:text-blue-700 transition-colors block py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contato
-              </Link>
-            </div>
-          </div>
-        )}
+                <div className="flex flex-col gap-2 p-4">
+                  {['servicos', 'sobre', 'projetos', 'contato'].map((item) => (
+                    <Link
+                      key={item}
+                      href={`#${item}`}
+                      className="py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors text-blue-600 font-medium"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   )
 }
-
