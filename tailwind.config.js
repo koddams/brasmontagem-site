@@ -1,19 +1,20 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
   theme: {
     extend: {
       colors: {
-        // Cores da identidade visual da Brasmontagem
-        primary: "#074FF0", // Azul principal
-        secondary: "#EFA600", // Laranja secundário
+        primary: {
+          light: '#1F3B73',
+          dark: '#1453A6',
+          accent: '#F2A71B'
+        }
       },
-    },
-  },
-  plugins: [],
+      fontFamily: {
+        serif: ['"Playfair Display"', 'serif'] // Fonte mais moderna
+      },
+      animation: {
+        gradient: 'gradient 15s ease infinite'
+      }
+    }
+  }
 }
-

@@ -1,28 +1,71 @@
-/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-gradient-to-b from-[#1F3B73] to-[#1453A6] bg-no-repeat bg-fixed;
+    @apply bg-gradient-to-b from-primary-light to-primary-dark bg-no-repeat bg-fixed min-h-screen;
   }
 
   h1, h2, h3 {
-    @apply font-serif font-bold;
+    @apply font-serif font-bold text-gray-100;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 }
 
 @layer utilities {
   .animate-background {
-    background: linear-gradient(-45deg, #1F3B73, #1453A6, #F2A71B);
+    @apply relative overflow-hidden;
+    background: linear-gradient(-45deg, 
+      theme('colors.primary.light'),
+      theme('colors.primary.dark'),
+      theme('colors.primary.accent'));
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
+    
+    &::before {
+      @apply content-[''] absolute inset-0;
+      background: linear-gradient(
+        to right,
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0.05) 50%,
+        rgba(255,255,255,0.1) 100%
+      );
+      mix-blend-mode: overlay;
+    }
   }
 
   @keyframes gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+}
+
+@layer base {
+  body {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .parallax-section {
+    @apply relative h-[400px] overflow-hidden;
+    transform-style: preserve-3d;
+    
+    > * {
+      @apply transform translate-z(-1px) scale(2);
+    }
+  }
+}
+@layer utilities {
+  .custom-scrollbar {
+    &::-webkit-scrollbar {
+      @apply w-2;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      @apply bg-primary-accent rounded-full;
+    }
   }
 }
