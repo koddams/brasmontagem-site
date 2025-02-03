@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { ThemeProvider } from 'next-themes'
 import { NavHeader } from '@/components/nav-header'
 import { WhatsAppButton } from '@/components/whatsapp-button'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -26,8 +27,10 @@ export default function RootLayout({
         >
           <NavHeader />
           
+          
           <main className="pt-20"> {/* Espaço para o header fixo */}
             {children}
+        <SpeedInsights />
           </main>
 
           <WhatsAppButton />
