@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 const projects = [
-  { id: 1, image: '/projects/project-1.jpg', title: 'Revestimento em Tanques' },
-  { id: 2, image: '/projects/project-2.jpg', title: 'Proteção de Diques' },
-  { id: 3, image: '/projects/project-3.jpg', title: 'Tubulações Industriais' },
+  { id: 1, image: '/images/tanque-rodoviario.jpg', title: 'Revestimento em Tanques' },
+  { id: 2, image: '/images/dique-concreto.jpg', title: 'Proteção de Diques' },
+  { id: 3, image: '/images/torre-cloro.jpg', title: 'Tubulações Industriais' },
 ]
 
 export function ProjectCarousel() {
@@ -36,7 +36,7 @@ export function ProjectCarousel() {
             src={projects[currentIndex].image}
             alt={projects[currentIndex].title}
             fill
-            className="object-cover"
+            className="object-cover object-center-bottom"
             priority
           />
           <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-4">

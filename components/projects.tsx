@@ -2,9 +2,9 @@ import Image from "next/image"
 
 export function Projects() {
   const projects = [
-    { image: "/project1.jpg", title: "Revestimento de Tanque Industrial" },
-    { image: "/project2.jpg", title: "Proteção Anticorrosiva em Planta Química" },
-    { image: "/project3.jpg", title: "Laminação em Fibra de Vidro para Indústria Petroquímica" },
+    { image: "/images/.jpg", title: "Revestimento de Tanque Industrial" },
+    { image: "/images/.jpg", title: "Proteção Anticorrosiva em Planta Química" },
+    { image: "/images/.jpg", title: "Laminação em Fibra de Vidro para Indústria Petroquímica" },
   ]
 
   return (

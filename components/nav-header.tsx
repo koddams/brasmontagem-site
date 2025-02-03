@@ -30,14 +30,15 @@ export function NavHeader() {
       <nav className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <Image 
-              src="/logo.png" 
-              alt="Brasmontagem Logo" 
-              width={200} 
-              height={60} 
-              className="h-12 w-auto object-contain"
-              priority
-            />
+          
+          <Image 
+          src="/images/logo-brasmontagem.png"
+          alt="Brasmontagem Logo" 
+          width={200} 
+         height={60}
+          className="h-12 w-auto object-contain"
+          priority
+          />
           </Link>
 
           {/* Desktop Navigation */}
