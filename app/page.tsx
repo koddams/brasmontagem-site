@@ -5,7 +5,7 @@ import { ParallaxBackground } from '@/components/parallax-background'
 
 export default function Home() {
   return (
-    <ParallaxBackground>
+    
     <main className="min-h-screen">
       {/* Botão do WhatsApp Fixo */}
       <div className="fixed bottom-4 right-4 z-50">
@@ -162,6 +162,6 @@ export default function Home() {
         </div>
       </section>
     </main>
-    </ParallaxBackground>
+    
   )
 }
