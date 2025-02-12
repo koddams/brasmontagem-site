@@ -1,24 +1,26 @@
-// tailwind.config.js
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}"
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: { // ✅ Correção crucial
+    extend: {
       colors: {
         primary: {
-          light: '#1F3B73',
-          dark: '#1453A6',
-          accent: '#F2A71B'
-        }
+          light: '#1F3B73',    // Defina explicitamente
+          DEFAULT: '#1453A6',
+          dark: '#0F3A6D'
+        },
+        accent: '#F59E0B'      // Laranja
+      },
+      backgroundImage: {
+        'industrial-pattern': "url('public/images/bg-pattern.svg')",
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'serif'] // Fonte mais moderna
-      },
-      animation: {
-        gradient: 'gradient 15s ease infinite'
+        sans: ['Inter', 'sans-serif'],
+        title: ['Poppins', 'sans-serif']
       }
-    }
-  }
+    },
+  },
+  plugins: [require('@tailwindcss/typography')],
 }

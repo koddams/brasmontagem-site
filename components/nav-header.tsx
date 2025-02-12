@@ -1,112 +1,76 @@
-"use client"
+'use client';
+import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
-
-export function NavHeader() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  const menuVariants = {
-    open: { 
-      x: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 }
-    },
-    closed: { 
-      x: '100%',
-      transition: { duration: 0.2 }
-    }
-  }
-
-  const overlayVariants = {
-    open: { opacity: 1 },
-    closed: { opacity: 0 }
-  }
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-      <nav className="container mx-auto px-6 py-3">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-          
-          <Image 
-          src="/images/logo-brasmontagem.png"
-          alt="Brasmontagem Logo" 
-          width={200} 
-         height={60}
-          className="h-12 w-auto object-contain"
-          priority
-          />
-          </Link>
+    <header className="fixed w-full top-0 bg-primary/95 backdrop-blur-md z-50 border-b border-white/10">
+      <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Logo */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="flex items-center gap-2"
+        >
+          <span className="text-2xl font-title font-bold text-accent">BRAS</span>
+          <span className="text-2xl font-title font-bold text-white">MONTAGEM</span>
+        </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-6">
-            {['servicos', 'sobre', 'projetos', 'contato'].map((item) => (
-              <Link
-                key={item}
-                href={`#${item}`}
-                className="text-blue-600 hover:text-blue-800 transition-colors duration-300 font-medium"
-              >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-blue-600 p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            {isMenuOpen ? (
-              <X size={24} className="stroke-current" />
-            ) : (
-              <Menu size={24} className="stroke-current" />
-            )}
-          </button>
+        {/* Menu Desktop */}
+        <div className="hidden md:flex gap-8">
+          {['Serviços', 'Projetos', 'Contato'].map((item, index) => (
+            <motion.a
+              key={index}
+              whileHover={{ color: '#F59E0B' }}
+              className="text-gray-300 hover:text-accent transition-colors cursor-pointer"
+              href={`#${item.toLowerCase()}`}
+            >
+              {item}
+            </motion.a>
+          ))}
         </div>
 
-        {/* Mobile Menu with Animations */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <>
-              <motion.div
-                className="fixed inset-0 bg-black/50 md:hidden"
-                initial="closed"
-                animate="open"
-                exit="closed"
-                variants={overlayVariants}
-                onClick={() => setIsMenuOpen(false)}
-              />
+        {/* Menu Mobile */}
+        <button 
+          className="md:hidden text-white"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+        </button>
 
-              <motion.div
-                className="fixed top-0 right-0 h-full w-64 bg-white shadow-xl md:hidden"
-                initial="closed"
-                animate="open"
-                exit="closed"
-                variants={menuVariants}
+        {/* Overlay Mobile */}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="fixed inset-0 bg-primary/95 backdrop-blur-lg md:hidden"
+          >
+            <div className="container mx-auto px-4 py-8 flex flex-col items-end">
+              <button 
+                className="mb-8 text-white"
+                onClick={() => setIsOpen(false)}
               >
-                <div className="flex flex-col gap-2 p-4">
-                  {['servicos', 'sobre', 'projetos', 'contato'].map((item) => (
-                    <Link
-                      key={item}
-                      href={`#${item}`}
-                      className="py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors text-blue-600 font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+                <X className="w-8 h-8" />
+              </button>
+              <div className="w-full space-y-6 text-right">
+                {['Serviços', 'Projetos', 'Contato'].map((item, index) => (
+                  <a
+                    key={index}
+                    className="block text-2xl text-white hover:text-accent"
+                    href={`#${item.toLowerCase()}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </nav>
     </header>
-  )
+  );
 }

@@ -4,79 +4,24 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-b from-primary-light to-primary-dark bg-no-repeat bg-fixed min-h-screen;
-  }
-
-  h1, h2, h3 {
-    @apply font-serif font-bold text-gray-100;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    @apply bg-gradient-to-b from-primary.light to-primary.dark;
   }
 }
 
-@layer utilities {
-  .animate-background {
-    @apply relative overflow-hidden;
-    background: linear-gradient(-45deg, 
-      theme('colors.primary.light'),
-      theme('colors.primary.dark'),
-      theme('colors.primary.accent'));
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    
-    &::before {
-      @apply content-[''] absolute inset-0;
-      background: linear-gradient(
-        to right,
-        rgba(255,255,255,0.1) 0%,
-        rgba(255,255,255,0.05) 50%,
-        rgba(255,255,255,0.1) 100%
-      );
-      mix-blend-mode: overlay;
-    }
+@layer components {
+  .service-card {
+    @apply bg-white/10 p-8 rounded-xl border border-white/10 backdrop-blur-sm;
   }
 
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .btn-primary {
+    @apply bg-accent text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all;
   }
-}
 
-@layer base {
-  body {
-    @apply transition-colors duration-300;
+  .hero-pattern {
+    @apply bg-industrial-pattern bg-cover bg-center;
   }
-}
 
-@layer utilities {
-  .parallax-section {
-    @apply relative h-[400px] overflow-hidden;
-    transform-style: preserve-3d;
-    
-    > * {
-      @apply transform translate-z(-1px) scale(2);
-    }
-  }
-}
-@layer utilities {
-  .custom-scrollbar {
-    &::-webkit-scrollbar {
-      @apply w-2;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      @apply bg-primary-accent rounded-full;
-    }
-  }
-}
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-.nav-list {
-  transform: translateX(100%);
-  @supports (backdrop-filter: blur(10px)) {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
+  .section-title {
+    @apply text-3xl font-bold text-primary-dark mb-8;
   }
 }
