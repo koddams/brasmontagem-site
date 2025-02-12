@@ -13,7 +13,7 @@ export default function Header() {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="flex items-center gap-2"
+          className="flex items-center gap-0"
         >
           <span className="text-2xl font-title font-bold text-accent">BRAS</span>
           <span className="text-2xl font-title font-bold text-white">MONTAGEM</span>

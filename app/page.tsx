@@ -10,14 +10,15 @@ export default function Home() {
 
       {/* Seção Hero */}
       <section className="pt-32 pb-48 bg-industrial-pattern bg-cover">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-2 text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 50,}}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-title font-bold text-white mb-6"
+            
           >
             <span className="block text-accent mb-4">Brasmontagem</span>
-            Engenharia de Precisão Industrial
+            Laminação em fibra de vidro Ltda
           </motion.h1>
           
           <motion.p
@@ -31,18 +32,23 @@ export default function Home() {
       </section>
 
       {/* Seção Serviços */}
-      <section id="servicos" className="py-20 bg-primary-light">
-        <div className="container mx-auto px-4">
+      <section id="servicos" className="py-20 bg-white/0">
+        <div className="container mx-auto px-2 overflow-hidden">
           <h2 className="text-3xl md:text-4xl font-title font-bold text-center text-white mb-16">
             Nossos Serviços Técnicos
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                whileHover={{ y: -10 }}
-                className="bg-white/5 p-8 rounded-xl border border-white/10 backdrop-blur-sm"
+                whileHover={{ y: -10, transition: { duration: 0.3, ease: "easeOut" }}}
+                
+                className="bg-white/5 p-8 rounded-xl border border-white/10 backdrop-blur-sm w-full"
+                style={{
+                  willChange: 'transform',
+                  transformStyle: 'preserve-3d'
+                }}
               >
                 <div className="mb-6 text-accent">
                   <service.icon className="w-12 h-12" />
@@ -50,7 +56,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-white mb-4">
                   {service.title}
                 </h3>
-                <p className="text-gray-300 mb-4">{service.description}</p>
+                <p className="text-white mb-4">{service.description}</p>
                 <ul className="space-y-2">
                   {service.details.map((detail, i) => (
                     <li key={i} className="text-gray-400 flex items-center gap-2">
@@ -68,18 +74,18 @@ export default function Home() {
       {/* Seção Especializações */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div 
               className="relative h-96 bg-gradient-to-br from-primary to-primary-light rounded-2xl overflow-hidden"
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: -100}}
+              whileInView={{ opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" }}}
             >
-              <div className="absolute inset-0 bg-[url('/images/torre-hero.jpg')] bg-cover mix-blend-overlay" />
+            <div className="absolute inset-0 z-[999] bg-[url('/images/torre-hero.jpg')] bg-cover mix-blend-overlay"/>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" }}}
               className="space-y-6"
             >
               <h2 className="text-3xl md:text-4xl font-title font-bold text-white">
