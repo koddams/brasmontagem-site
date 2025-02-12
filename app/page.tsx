@@ -74,7 +74,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
             >
-              <div className="absolute inset-0 bg-[url('/industrial-application.jpg')] bg-cover mix-blend-overlay" />
+              <div className="absolute inset-0 bg-[url('/images/torre-hero.jpg')] bg-cover mix-blend-overlay" />
             </motion.div>
 
             <motion.div
