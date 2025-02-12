@@ -31,7 +31,7 @@ export default function Home() {
       </section>
 
       {/* Seção Serviços */}
-      <section id="servicos" className="py-20 bg-primary.light">
+      <section id="servicos" className="py-20 bg-primary-light">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-title font-bold text-center text-white mb-16">
             Nossos Serviços Técnicos
@@ -70,7 +70,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div 
-              className="relative h-96 bg-gradient-to-br from-primary to-primary.light rounded-2xl overflow-hidden"
+              className="relative h-96 bg-gradient-to-br from-primary to-primary-light rounded-2xl overflow-hidden"
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
             >

@@ -1,27 +1,19 @@
+/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-gradient-to-b from-primary.light to-primary.dark;
+    @apply bg-[linear-gradient(#1F3B73,#0F3A6D)]
   }
 }
 
 @layer components {
-  .service-card {
-    @apply bg-white/10 p-8 rounded-xl border border-white/10 backdrop-blur-sm;
-  }
-
   .btn-primary {
-    @apply bg-accent text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all;
+    @apply bg-accent text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors;
   }
-
-  .hero-pattern {
-    @apply bg-industrial-pattern bg-cover bg-center;
-  }
-
-  .section-title {
-    @apply text-3xl font-bold text-primary-dark mb-8;
-  }
+}
+body{
+  background-image: url('/images/bg-pattern.svg');
 }

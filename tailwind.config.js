@@ -14,7 +14,7 @@ module.exports = {
         accent: '#F59E0B'      // Laranja
       },
       backgroundImage: {
-        'industrial-pattern': "url('public/images/bg-pattern.svg')",
+        'industrial-pattern': "url('/public/images/bg-pattern.svg')",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
@@ -23,4 +23,9 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/typography')],
+
+  safelist: [ // Forçar reconhecimento
+    'from-primary-light',
+    'to-primary-dark'
+  ]
 }
