@@ -26,15 +26,14 @@ export default function Home() {
             animate={{ opacity: 1 }}
             className="text-lg text-gray-300 max-w-2xl mx-auto"
           >
-            Especialistas em soluções complexas desde 2008
           </motion.p>
         </div>
       </section>
 
       {/* Seção Serviços */}
-      <section id="servicos" className="py-20 bg-white/0">
-        <div className="container mx-auto px-2 overflow-hidden">
-          <h2 className="text-3xl md:text-4xl font-title font-bold text-center text-white mb-16">
+      <section id="servicos" className="py-20 bg-blue-600/80 w-full">
+        <div className="container mx-auto w-full max-w-[1360px] px-2 sm:px-4n">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-title font-bold text-center text-white mb-8 md:mb-12">
             Nossos Serviços Técnicos
           </h2>
 
@@ -80,7 +79,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -100}}
               whileInView={{ opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" }}}
             >
-            <div className="absolute inset-0 z-[999] bg-[url('/images/torre-hero.jpg')] bg-cover mix-blend-overlay"/>
+            <div className="absolute inset-0  bg-[url('/images/torre-hero.jpg')] bg-cover mix-blend-overlay"/>
             </motion.div>
 
             <motion.div
